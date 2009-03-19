@@ -8,7 +8,8 @@
 #    https://fcp.surfsite.org/modules/newbb/viewtopic.php?topic_id=55862&viewmode=flat&order=ASC&start=20
 
 %bcond_with	java_sun
-%define archivever %(echo %{version} | tr . _)
+%define		archivever %(echo %{version} | tr . _)
+%define		srcname	axis
 Summary:	A SOAP implementation in Java
 Summary(pl.UTF-8):	Implementacja SOAP w Javie
 Name:		axis
@@ -18,9 +19,9 @@ License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://ws.apache.org/axis/dist/%{archivever}/%{name}-src-%{archivever}.tar.gz
 # Source0-md5:	3dcce3cbd37f52d70ebeb858f90608dc
-Source1:	%{name}-build.xml
-Patch0:		%{name}-classpath.patch
-Patch1:		%{name}-missing_xsd.patch
+Source1:	%{srcname}-build.xml
+Patch0:		%{srcname}-classpath.patch
+Patch1:		%{srcname}-missing_xsd.patch
 URL:		http://ws.apache.org/axis/
 BuildRequires:	ant >= 1.6
 BuildRequires:	ant-nodeps
@@ -99,30 +100,30 @@ konwencji reprezentowania zdalnych wywołań procedur i odpowiedzi.
 Ten projekt jest następcą projektu Apache SOAP.
 
 %package javadoc
-Summary:	Javadoc for %{name}
-Summary(pl.UTF-8):	Dokumentacja javadoc dla pakietu %{name}
+Summary:	Javadoc for %{srcname}
+Summary(pl.UTF-8):	Dokumentacja javadoc dla pakietu %{srcname}
 Group:		Documentation
 Requires:	jpackage-utils
 
 %description javadoc
-Javadoc for %{name}.
+Javadoc for %{srcname}.
 
 %description javadoc -l pl.UTF-8
-Dokumentacja javadoc dla pakietu %{name}.
+Dokumentacja javadoc dla pakietu %{srcname}.
 
 %package manual
-Summary:	Manual for %{name}
-Summary(pl.UTF-8):	Podręcznik do pakietu %{name}
+Summary:	Manual for %{srcname}
+Summary(pl.UTF-8):	Podręcznik do pakietu %{srcname}
 Group:		Development/Languages/Java
 
 %description manual
-Documentation for %{name}.
+Documentation for %{srcname}.
 
 %description manual -l pl.UTF-8
-Podręcznik do pakietu %{name}.
+Podręcznik do pakietu %{srcname}.
 
 %prep
-%setup -q -n %{name}-%{archivever}
+%setup -q -n %{srcname}-%{archivever}
 
 # Remove provided binaries
 find -name '*.jar' | xargs rm -v
@@ -191,14 +192,14 @@ export CLASSPATH
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_javadir}/%{name}
+install -d $RPM_BUILD_ROOT%{_javadir}/%{srcname}
 
 cd build/lib
 install axis.jar axis-ant.jar saaj.jar jaxrpc.jar \
-	$RPM_BUILD_ROOT%{_javadir}/%{name}
+	$RPM_BUILD_ROOT%{_javadir}/%{srcname}
 cd -
 
-cd $RPM_BUILD_ROOT%{_javadir}/%{name}
+cd $RPM_BUILD_ROOT%{_javadir}/%{srcname}
 for jar in *.jar ; do
 	vjar=$(echo $jar | sed s+.jar+-%{version}.jar+g)
 	mv $jar $vjar
@@ -207,26 +208,26 @@ done
 cd -
 
 ### Javadoc
-install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
-cp -a build/javadocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
-ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
+install -d $RPM_BUILD_ROOT%{_javadocdir}/%{srcname}-%{version}
+cp -a build/javadocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{srcname}-%{version}
+ln -s %{srcname}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post javadoc
-ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
+ln -nfs %{srcname}-%{version} %{_javadocdir}/%{name}
 
 %files
 %defattr(644,root,root,755)
 %doc LICENSE README release-notes.html changelog.html
-%dir %{_javadir}/%{name}
-%{_javadir}/%{name}/*.jar
+%dir %{_javadir}/%{srcname}
+%{_javadir}/%{srcname}/*.jar
 
 %files javadoc
 %defattr(644,root,root,755)
-%{_javadocdir}/%{name}-%{version}
-%ghost %{_javadocdir}/%{name}
+%{_javadocdir}/%{srcname}-%{version}
+%ghost %{_javadocdir}/%{srcname}
 
 %files manual
 %defattr(644,root,root,755)
