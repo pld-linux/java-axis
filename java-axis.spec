@@ -29,13 +29,13 @@ BuildRequires:	ant-nodeps
 %{?with_java_sun:BuildRequires:	java-sun <= 1.5}
 # BuildRequires:	jimi
 # BuildRequires:	jms
-BuildRequires:	httpunit
 BuildRequires:	jaf
 BuildRequires:	java-commons-discovery
 BuildRequires:	java-commons-httpclient
 BuildRequires:	java-commons-logging
 BuildRequires:	java-commons-net
 BuildRequires:	java-oro
+BuildRequires:	java-wsdl4j
 BuildRequires:	java-xalan
 BuildRequires:	java-xerces
 BuildRequires:	java-xml-commons
@@ -43,18 +43,17 @@ BuildRequires:	java-xmlbeans
 BuildRequires:	javamail
 BuildRequires:	jpackage-utils
 BuildRequires:	jsse
-BuildRequires:	junit
+BuildRequires:	java-junit
 BuildRequires:	logging-log4j
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	servletapi5
-BuildRequires:	wsdl4j
-Requires:	httpunit
 Requires:	jaf
 Requires:	java-commons-discovery
 Requires:	java-commons-httpclient
 Requires:	java-commons-logging
 Requires:	java-commons-net
 Requires:	java-oro
+Requires:	java-wsdl4j
 Requires:	java-xalan
 Requires:	java-xerces
 Requires:	java-xml-commons
@@ -64,7 +63,6 @@ Requires:	jpackage-utils
 Requires:	jsse
 Requires:	logging-log4j
 Requires:	servletapi5
-Requires:	wsdl4j
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
