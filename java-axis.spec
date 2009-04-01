@@ -7,7 +7,12 @@
 #  - it won't compile with java 1.6. see:
 #    https://fcp.surfsite.org/modules/newbb/viewtopic.php?topic_id=55862&viewmode=flat&order=ASC&start=20
 
-%bcond_with	java_sun
+%if "%{pld_release}" == "ti"
+%bcond_without java_sun        # build with gcj
+%else
+%bcond_with    java_sun        # build with java-sun
+%endif
+
 %define		archivever %(echo %{version} | tr . _)
 %define		srcname	axis
 Summary:	A SOAP implementation in Java
@@ -45,6 +50,7 @@ BuildRequires:	jpackage-utils
 BuildRequires:	jsse
 BuildRequires:	java-junit
 BuildRequires:	logging-log4j
+BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	servletapi5
 Requires:	jaf
@@ -162,7 +168,7 @@ xmlbeans_jar=$(find-jar xmlbeans)
 #jimi_jar=$(find-jar jimi)
 
 CLASSPATH=$wsdl4j_jar:$commons_logging_jar:$commons_discovery_jar
-%{!?with_java_sun:CLASSPATH=$CLASSPATH:$(build-classpath ecj tools)}
+
 export CLASSPATH
 
 %ant dist \
