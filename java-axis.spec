@@ -12,12 +12,12 @@
 %define		srcname	axis
 Summary:	A SOAP implementation in Java
 Summary(pl.UTF-8):	Implementacja SOAP w Javie
-Name:		axis
+Name:		java-axis
 Version:	1.4
 Release:	0.1
 License:	Apache
 Group:		Development/Languages/Java
-Source0:	http://ws.apache.org/axis/dist/%{archivever}/%{name}-src-%{archivever}.tar.gz
+Source0:	http://ws.apache.org/axis/dist/%{archivever}/%{srcname}-src-%{archivever}.tar.gz
 # Source0-md5:	3dcce3cbd37f52d70ebeb858f90608dc
 Source1:	%{srcname}-build.xml
 Patch0:		%{srcname}-classpath.patch
@@ -208,13 +208,13 @@ cd -
 ### Javadoc
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{srcname}-%{version}
 cp -a build/javadocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{srcname}-%{version}
-ln -s %{srcname}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
+ln -s %{srcname}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{srcname} # ghost symlink
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post javadoc
-ln -nfs %{srcname}-%{version} %{_javadocdir}/%{name}
+ln -nfs %{srcname}-%{version} %{_javadocdir}/%{srcname}
 
 %files
 %defattr(644,root,root,755)
