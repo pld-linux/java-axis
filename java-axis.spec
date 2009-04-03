@@ -13,6 +13,8 @@
 %bcond_with    java_sun        # build with java-sun
 %endif
 
+%include	/usr/lib/rpm/macros.java
+
 %define		archivever %(echo %{version} | tr . _)
 %define		srcname	axis
 Summary:	A SOAP implementation in Java
