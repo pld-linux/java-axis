@@ -7,12 +7,6 @@
 #  - it won't compile with java 1.6. see:
 #    https://fcp.surfsite.org/modules/newbb/viewtopic.php?topic_id=55862&viewmode=flat&order=ASC&start=20
 
-%if "%{pld_release}" == "ti"
-%bcond_without java_sun        # build with gcj
-%else
-%bcond_with    java_sun        # build with java-sun
-%endif
-
 %include	/usr/lib/rpm/macros.java
 
 %define		archivever %(echo %{version} | tr . _)
@@ -30,46 +24,44 @@ Source1:	%{srcname}-build.xml
 Patch0:		%{srcname}-classpath.patch
 Patch1:		%{srcname}-missing_xsd.patch
 URL:		http://ws.apache.org/axis/
-BuildRequires:	ant >= 1.6
-BuildRequires:	ant-nodeps
-%{!?with_java_sun:BuildRequires:	java-gcj-compat-devel}
-%{?with_java_sun:BuildRequires:	java-sun <= 1.5}
 # BuildRequires:	jimi
 # BuildRequires:	jms
-BuildRequires:	jaf
+BuildRequires:	ant >= 1.6
+BuildRequires:	ant-nodeps
+BuildRequires:	java(jaf)
+BuildRequires:	java(javamail)
+BuildRequires:	java(jsse)
 BuildRequires:	java-commons-discovery
 BuildRequires:	java-commons-httpclient
 BuildRequires:	java-commons-logging
 BuildRequires:	java-commons-net
+BuildRequires:	java-junit
+BuildRequires:	java-log4j
 BuildRequires:	java-oro
+BuildRequires:	jdk <= 1.5
 BuildRequires:	java-wsdl4j
 BuildRequires:	java-xalan
 BuildRequires:	java-xerces
 BuildRequires:	java-xml-commons
 BuildRequires:	java-xmlbeans
-BuildRequires:	javamail
 BuildRequires:	jpackage-utils
-BuildRequires:	jsse
-BuildRequires:	java-junit
-BuildRequires:	logging-log4j
-BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	servletapi5
-Requires:	jaf
+Requires:	java(jaf)
+Requires:	java(javamail)
+Requires:	java(jsse)
 Requires:	java-commons-discovery
 Requires:	java-commons-httpclient
 Requires:	java-commons-logging
 Requires:	java-commons-net
+Requires:	java-log4j
 Requires:	java-oro
 Requires:	java-wsdl4j
 Requires:	java-xalan
 Requires:	java-xerces
 Requires:	java-xml-commons
 Requires:	java-xmlbeans
-Requires:	javamail
 Requires:	jpackage-utils
-Requires:	jsse
-Requires:	logging-log4j
 Requires:	servletapi5
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
