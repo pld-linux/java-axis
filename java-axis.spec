@@ -7,7 +7,6 @@
 #  - it won't compile with java 1.6. see:
 #    https://fcp.surfsite.org/modules/newbb/viewtopic.php?topic_id=55862&viewmode=flat&order=ASC&start=20
 
-%include	/usr/lib/rpm/macros.java
 
 %define		archivever %(echo %{version} | tr . _)
 %define		srcname	axis
