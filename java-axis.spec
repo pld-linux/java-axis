@@ -126,8 +126,8 @@ Podręcznik do pakietu %{srcname}.
 find -name '*.jar' | xargs rm -v
 find -name '*.class' | xargs rm -v
 
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 cp %{SOURCE1} build.xml
 
