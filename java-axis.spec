@@ -8,17 +8,19 @@
 #    https://fcp.surfsite.org/modules/newbb/viewtopic.php?topic_id=55862&viewmode=flat&order=ASC&start=20
 
 
+%{?use_default_jdk:%use_default_jdk 8}
+
 %define		archivever %(echo %{version} | tr . _)
 %define		srcname	axis
 Summary:	A SOAP implementation in Java
 Summary(pl.UTF-8):	Implementacja SOAP w Javie
 Name:		java-axis
 Version:	1.4
-Release:	1
+Release:	2
 License:	Apache
 Group:		Development/Languages/Java
-Source0:	http://ws.apache.org/axis/dist/%{archivever}/%{srcname}-src-%{archivever}.tar.gz
-# Source0-md5:	541efc07c135c4dc7f0e1c9573aec8e1
+Source0:	https://archive.apache.org/dist/ws/axis/%{archivever}/%{srcname}-src-%{archivever}.tar.gz
+# Source0-md5:	3dcce3cbd37f52d70ebeb858f90608dc
 Source1:	%{srcname}-build.xml
 Patch0:		%{srcname}-classpath.patch
 Patch1:		%{srcname}-missing_xsd.patch
@@ -37,14 +39,14 @@ BuildRequires:	java-commons-net
 BuildRequires:	java-junit
 BuildRequires:	java-log4j
 BuildRequires:	java-oro
-BuildRequires:	jdk <= 1.5
+%buildrequires_jdk
 BuildRequires:	java-wsdl4j
 BuildRequires:	java-xalan
 BuildRequires:	java-xerces
 BuildRequires:	java-xml-commons
 BuildRequires:	java-xmlbeans
 BuildRequires:	jpackage-utils
-BuildRequires:	rpmbuild(macros) >= 1.300
+BuildRequires:	rpmbuild(macros) >= 1.556
 BuildRequires:	servletapi5
 Requires:	java(jaf)
 Requires:	java(javamail)
