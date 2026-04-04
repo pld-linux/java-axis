@@ -16,7 +16,7 @@ Summary:	A SOAP implementation in Java
 Summary(pl.UTF-8):	Implementacja SOAP w Javie
 Name:		java-axis
 Version:	1.4
-Release:	2
+Release:	3
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	https://archive.apache.org/dist/ws/axis/%{archivever}/%{srcname}-src-%{archivever}.tar.gz
@@ -28,7 +28,6 @@ URL:		http://ws.apache.org/axis/
 # BuildRequires:	jimi
 # BuildRequires:	jms
 BuildRequires:	ant >= 1.6
-BuildRequires:	ant-nodeps
 BuildRequires:	java(jaf)
 BuildRequires:	java(javamail)
 BuildRequires:	java(jsse)
