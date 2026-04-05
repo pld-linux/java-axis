@@ -16,7 +16,7 @@ Summary:	A SOAP implementation in Java
 Summary(pl.UTF-8):	Implementacja SOAP w Javie
 Name:		java-axis
 Version:	1.4
-Release:	3
+Release:	4
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	https://archive.apache.org/dist/ws/axis/%{archivever}/%{srcname}-src-%{archivever}.tar.gz
@@ -28,9 +28,8 @@ URL:		http://ws.apache.org/axis/
 # BuildRequires:	jimi
 # BuildRequires:	jms
 BuildRequires:	ant >= 1.6
-BuildRequires:	java(jaf)
+# java(jaf), java(jsse) built into JDK since Java 6
 BuildRequires:	java(javamail)
-BuildRequires:	java(jsse)
 BuildRequires:	java-commons-discovery
 BuildRequires:	java-commons-httpclient
 BuildRequires:	java-commons-logging
@@ -46,10 +45,8 @@ BuildRequires:	java-xml-commons
 BuildRequires:	java-xmlbeans
 BuildRequires:	jpackage-utils
 BuildRequires:	rpmbuild(macros) >= 1.556
-BuildRequires:	servletapi5
-Requires:	java(jaf)
+BuildRequires:	java(servlet)
 Requires:	java(javamail)
-Requires:	java(jsse)
 Requires:	java-commons-discovery
 Requires:	java-commons-httpclient
 Requires:	java-commons-logging
@@ -62,7 +59,7 @@ Requires:	java-xerces
 Requires:	java-xml-commons
 Requires:	java-xmlbeans
 Requires:	jpackage-utils
-Requires:	servletapi5
+Requires:	java(servlet)
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
